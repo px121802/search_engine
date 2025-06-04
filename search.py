@@ -7,7 +7,7 @@ from nltk.tokenize import word_tokenize
 import time
 
 TERM_INDEX_DIR = "term_index"
-TOTAL_DOCS = 56000  # Replace with your final indexed doc count
+TOTAL_DOCS = 55393
 stemmer = PorterStemmer()
 
 def tokenize_query(query):
@@ -80,7 +80,7 @@ def main():
         print(f"\nQuery {i}: {q}")
         results = search(q)
         for rank, (url, score) in enumerate(results, 1):
-            print(f"{rank}. {url} (score: {score:.2f})")
+            print(f"{rank}. {url}")
 
 if __name__ == "__main__":
     main()

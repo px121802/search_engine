@@ -21,7 +21,6 @@ def tokenize(text):
 
 
 def parse_html(html):
-    # If HTML is missing or not a string, return empty fields
     if not isinstance(html, str):
         return {
             "title": "",
@@ -32,13 +31,11 @@ def parse_html(html):
 
     soup = BeautifulSoup(html, "html.parser")
 
-    # Remove unwanted tags
     [s.extract() for s in soup(['script', 'style'])]
 
     def safe_get_text(tag):
         return tag.get_text() if tag and tag.get_text() else ""
 
-    # Safely extract different parts
     title = soup.title.string if soup.title and soup.title.string else ""
     headings = ' '.join(safe_get_text(tag) for tag in soup.find_all(['h1', 'h2', 'h3']))
     bold = ' '.join(safe_get_text(tag) for tag in soup.find_all(['b', 'strong']))
