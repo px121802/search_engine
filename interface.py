@@ -1,12 +1,11 @@
 from search import search
 
 def main():
-    print("=== ICS Search Engine (Console) ===")
-    print("Type your query, or type 'exit' to quit.")
+    print("Type your query, or type 'exit' to quit.\n")
 
     while True:
-        query = input("\nQuery: ").strip()
-        if query.lower() == "exit":
+        query = input("Query: ").strip()
+        if query == "exit":
             break
 
         results, elapsed = search(query)

@@ -83,7 +83,7 @@ def main():
         print(f"\nQuery {i}: {q}")
         results = search(q)
         for rank, (url, score) in enumerate(results, 1):
-            print(f"{rank}. {url} (score: {score:.2f})")
+            print(f"{rank}. {url}")
 
 if __name__ == "__main__":
     main()

@@ -14,8 +14,6 @@ def restructure_index():
 
     with open(MERGED_INDEX_FILE, "rb") as f:
         full_index = pickle.load(f)
-
-    # Split into buckets by first character
     partitioned = defaultdict(lambda: defaultdict(list))
 
     for term, postings in full_index.items():
@@ -26,12 +24,7 @@ def restructure_index():
         with open(os.path.join(TERM_INDEX_DIR, f"{bucket}.pkl"), "wb") as f:
             pickle.dump(partial_index, f)
 
-    print(f"Split into {len(partitioned)} files in '{TERM_INDEX_DIR}/'.")
-
-    original_term_count = len(full_index)
-    new_term_count = sum(len(pickle.load(open(os.path.join(TERM_INDEX_DIR, f), "rb"))) 
-                        for f in os.listdir(TERM_INDEX_DIR) if f.endswith(".pkl"))
-
+    print(f"split done")
 
 if __name__ == "__main__":
     restructure_index()
