@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ICS Search</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 20px auto; }
+        .search-box { width: 100%; padding: 10px; margin: 20px 0; }
+        .result { margin: 10px 0; padding: 10px; border: 1px solid #ddd; }
+        .url { color: blue; text-decoration: none; }
+        .score { color: green; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>ICS Search</h1>
+    <input type="text" class="search-box" id="searchInput" placeholder="Search...">
+    <div id="results"></div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const resultsDiv = document.getElementById('results');
+        let timeout;
+
+        searchInput.addEventListener('input', function() {
+            clearTimeout(timeout);
+            const query = this.value.trim();
+            
+            if (query.length < 2) {
+                resultsDiv.innerHTML = '';
+                return;
+            }
+
+            timeout = setTimeout(() => {
+                fetch(`/search?q=${encodeURIComponent(query)}`)
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.results.length === 0) {
+                            resultsDiv.innerHTML = '<div class="result">No results found</div>';
+                            return;
+                        }
+                        resultsDiv.innerHTML = data.results.map(r => 
+                            `<div class="result">
+                                <a href="${r.url}" class="url" target="_blank">${r.url}</a>
+                                <div class="score">Score: ${r.score}</div>
+                            </div>`
+                        ).join('');
+                    })
+                    .catch(() => {
+                        resultsDiv.innerHTML = '<div class="result">Error occurred</div>';
+                    });
+            }, 300);
+        });
+    </script>
+</body>
+</html> 
