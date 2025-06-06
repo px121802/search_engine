@@ -5,12 +5,15 @@ import string
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
 import time
+import nltk
 
 TERM_INDEX_DIR = "term_index"
-TOTAL_DOCS = 55393
+TOTAL_DOCS = 55393  # Replace with your final indexed doc count
 stemmer = PorterStemmer()
 
 # Tokenizes and stems the query so terms match the index terms.
+nltk.download('punkt')
+
 def tokenize_query(query):
     return [stemmer.stem(token.lower()) for token in word_tokenize(query) if token.isalnum()]
 
