@@ -2,14 +2,17 @@ import os
 import pickle
 import string
 from collections import defaultdict
-
+#this script takes the merged index and restructures it into smaller files based on the first letter of each term
 MERGED_INDEX_FILE = "merged_index.pkl"
 TERM_INDEX_DIR = "term_index"
 
+#This function decides which file a term belongs to based on the first letter of the term
 def get_bucket(term):
     first = term[0].lower()
     return first if first in string.ascii_lowercase else "other"
 
+
+#This function loads the full inverted index and loops through every term and adding it to the correct bucket based on the first letter of the term.
 def restructure_index():
 
     with open(MERGED_INDEX_FILE, "rb") as f:
