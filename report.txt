@@ -1,0 +1,47 @@
+-- poor performing queries (1–10)
+"professor"
+
+"cs course"
+
+"who teaches python"
+
+"computer things UC"
+
+"homework ics 161"
+
+"search engine optimization"
+
+"uci calendar exam"
+
+"supervised vs unsupervised"
+
+"Cristina L."
+
+"ICS classes hard easy"
+
+"Donald Bren School of Information and Computer Sciences"
+
+"ICS 33 Python projects"
+
+"UC Irvine computer science undergraduate requirements"
+
+"master of software engineering"
+
+"Cristina Lopes"
+
+"machine learning research UCI"
+
+"ICS course catalog 2025"
+
+"UCI ICS faculty directory"
+
+"introduction to artificial intelligence ICS 171"
+
+"ACM student chapter UCI"
+
+Improvements
+Query processing: case normalization (lowercasing), stemming using Porter Stemmer, tokenization with NLTK, duplicate detection via MD5 hashing
+Content weighting: title text (5x), headings (3x), bold text (2x), body text (1x)
+Ranking logic: TF-IDF scoring, document intersection for multi-term queries, weighted term frequencies, partial index merging for large datasets
+Content processing: HTML parsing with BeautifulSoup, script and style tag removal, text extraction from multiple HTML elements, special character handling
+
